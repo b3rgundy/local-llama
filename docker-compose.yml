@@ -1,0 +1,72 @@
+name: "Local LLM Stack"
+
+# include:
+#   - ./Kokoro-FastAPI/docker/cpu/docker-compose.yml
+services:
+  # llama-cpp:
+  #   image: ${LLAMA_CPP_IMAGE}
+  #   container_name: llama-cpp-server
+  #   build:
+  #     context: https://github.com/ggerganov/llama.cpp.git
+  #     dockerfile: .devops/main.Dockerfile
+  #     args:
+  #       - LLAMA_METAL=1
+  #       - LLAMA_METAL_NDEBUG=1
+  #   ports:
+  #     - 10000:10000
+  #   volumes:
+  #     - ${MODEL_DIR:-./models}:/models:ro
+  #   environment:
+  #     - LLAMA_ARG_MODEL=${LLAMA_MODEL_FILENAME}
+  #     - LLAMA_ARG_HOST=0.0.0.0
+  #     - LLAMA_ARG_PORT=10000
+  #     - LLAMA_ARG_CTX_SIZE=4096
+  #     - LLAMA_ARG_THREADS=8
+  #     - LLAMA_ARG_N_GPU_LAYERS=0
+  #     - DGGML_METAL=ON
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 8G
+  #       reservations:
+  #         memory: 4G
+  #   restart: unless-stopped
+
+  open-webui:
+    image: ${OPEN_WEBUI_IMAGE}
+    platform: linux/arm64
+    volumes:
+      - open-webui:/app/backend/data
+    environment:
+      - WEBUI_AUTH=False
+      - ENV=dev
+      - AUDIO_TTS_ENGINE=openai
+      - AUDIO_TTS_MODEL=tts-1
+      - AUDIO_TTS_VOICE=af_sky
+      - AUDIO_TTS_OPENAI_API_BASE_URL=http://local-llm-network:8880/v1
+      - AUDIO_TTS_OPENAI_API_KEY=${AUDIO_TTS_OPENAI_API_KEY:-not-needed}
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:-itsasecret}
+    networks:
+      - local-llm-network
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+  kokoro-tts:
+    image: ${KOKORO_TTS_IMAGE}
+    platform: linux/arm64
+    ports:
+      - 8880:8880
+    restart: always
+    networks:
+      - local-llm-network
+
+networks:
+  local-llm-network:
+    driver: bridge
+
+volumes:
+  open-webui:
+
+  
+  
