@@ -37,6 +37,8 @@ LLAMA_SERVER_CMD=(
 	${GPU_LAYERS:+--gpu-layers $GPU_LAYERS}
 	${BATCH_SIZE:+--batch-size $BATCH_SIZE}
 	${N_PREDICT:+--n-predict $N_PREDICT}
+    ${MLOCK:+--mlock}
+    ${THREADS:+--threads $THREADS}
 )
 
 echo ${LLAMA_SERVER_CMD[@]}
