@@ -19,7 +19,7 @@ services:
     networks:
       - local-llm-network
     ports:
-      - 3000:3000
+      - 3000:8080
     restart: unless-stopped
 
   kokoro-tts:
@@ -33,7 +33,6 @@ services:
 
 networks:
   local-llm-network:
-    driver: bridge
 
 volumes:
   open-webui:

@@ -18,6 +18,13 @@ DEPENDENCY_VERSION="b5760"
 
 DEPENDENCY_URL="https://github.com/ggml-org/llama.cpp/releases/download/$DEPENDENCY_VERSION/llama-$DEPENDENCY_VERSION-bin-$OS_NAME-$HARDWARE_NAME.zip"
 
+# Check if dependency folder exists
+if [ ! -d "$DIR" ]; then
+    mkdir -p "$DIR"
+    echo "Directory "
+fi
+
+
 curl -L "$DEPENDENCY_URL" | tar -xz -C ./dependency
 chmod +x $LLAMA_SERVER_BIN
 
@@ -100,7 +107,7 @@ if kill -0 $LLAMA_PID 2>/dev/null; then
     echo -e "${GREEN}Log file: llama-server.log${NC}"
 else
     echo -e "${RED}❌ Failed to start llama-server${NC}"
-		stop_docker_compose
+    stop_docker_compose
     exit 1
 fi
 
