@@ -32,7 +32,7 @@ The idea is to have a quick, easy to setup and run development stack for **local
 ### Instructions
 
 1. Place your downloaded model in the `/models` directory
-2. Assign your model filename to the `LLAMA_MODEL_FILENAME` environment variable.
+2. Assign your model filename to the `MODEL_FILENAME` environment variable.
 3. Run the script:
    
 	 ```
