@@ -31,12 +31,16 @@ The idea is to have a quick, easy to setup and run development stack for **local
 
 ### Instructions
 
-1. Place your downloaded model in the `/models` directory
-2. Assign your model filename to the `MODEL_FILENAME` environment variable.
-3. Run the script:
+1. Copy `.env.example` file:
+   ```
+	 cp .env.example .env
+	 ````
+2. Place your downloaded model in the `/models` directory
+3. Assign your model filename to the `MODEL_FILENAME` environment variable.
+4. Run the script:
    
 	 ```
-	 $ bash ./scripts/run.sh
+	 bash ./scripts/run.sh
 	 ```
 
 # FAQ

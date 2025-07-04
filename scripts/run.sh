@@ -36,7 +36,7 @@ LLAMA_SERVER_CMD=(
 	${CTX_SIZE:+--ctx-size $CTX_SIZE}
 	${GPU_LAYERS:+--gpu-layers $GPU_LAYERS}
 	${BATCH_SIZE:+--batch-size $BATCH_SIZE}
-	${MLOCK:+--mlock}
+	${N_PREDICT:+--n-predict $N_PREDICT}
 )
 
 echo ${LLAMA_SERVER_CMD[@]}
