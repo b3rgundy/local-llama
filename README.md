@@ -1,10 +1,10 @@
-# Local LLaMA
+# Local LLM
 
 A bundle to run local LLM's on a modern MacBook.
 
 ## Table of Contents
 
-- [Local LLaMA](#local-llama)
+- [Local LLM](#local-llm)
 	- [Table of Contents](#table-of-contents)
 	- [Introduction](#introduction)
 	- [Running](#running)
@@ -16,7 +16,7 @@ A bundle to run local LLM's on a modern MacBook.
 
 This is a bundling of existing open-source AI frameworks for development purposes, namely the following:
 
-- [llama.cpp](https://github.com/ggml-org/llama.cpp) (performant model inference on Mac Silicon)
+- [Ollama](https://ollama.com) (performant model inference on Mac Silicon)
 - [open-webui](https://github.com/open-webui/open-webui) (broadly supported extensibel front end)
 - [Kokoro-FastAPI](https://github.com/remsky/Kokoro-FastAPI) (wrapper of personal favorite Kokoro TTS)
 
@@ -27,7 +27,7 @@ The idea is to have a quick, easy to setup and run development stack for **local
 ### Prerequisites
 
 - [Docker Compose](https://docs.docker.com/desktop/setup/install/mac-install/)
-- A quantized model that can run on your hardware, for example [CodeLlama 7B Instruct](https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF) (login for *Hardware compatibility*)
+- [Ollama](https://ollama.com/download) installed (`brew install ollama`)
 
 ### Instructions
 
@@ -35,21 +35,22 @@ The idea is to have a quick, easy to setup and run development stack for **local
    ```
 	 cp .env.example .env
 	 ````
-2. Place your downloaded model in the `/models` directory
-3. Assign your model filename to the `MODEL_FILENAME` environment variable.
-4. Run the script:
+2. Assign the model you want to use to the `OLLAMA_MODEL` environment variable (e.g. `llama3.2:3b`)
+3. Run the script:
    
 	 ```
 	 bash ./scripts/run.sh
 	 ```
 
+This pulls the model via Ollama (if not already present locally) and starts the full stack.
+
 # FAQ
 
-**Q: Why no llama.cpp container?**
+**Q: Why no Ollama container?**
 
 **A: Docker has no Silicon GPU accelleration: [source](https://chariotsolutions.com/blog/post/apple-silicon-gpus-docker-and-ollama-pick-two/)**
 
 
 **Q: Can this run on my old MacBook?**
 
-**A: Yes, but: you may want to go for a smaller model and tweak the inference engine using `.env`**
+**A: Yes, but: you may want to go for a smaller model.**
