@@ -5,11 +5,11 @@ A bundle to run local LLM's on a modern MacBook.
 ## Table of Contents
 
 - [Local LLM](#local-llm)
-	- [Table of Contents](#table-of-contents)
-	- [Introduction](#introduction)
-	- [Running](#running)
-		- [Prerequisites](#prerequisites)
-		- [Instructions](#instructions)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Running](#running)
+    - [Prerequisites](#prerequisites)
+    - [Instructions](#instructions)
 - [FAQ](#faq)
 
 ## Introduction
@@ -33,14 +33,14 @@ The idea is to have a quick, easy to setup and run development stack for **local
 
 1. Copy `.env.example` file:
    ```
-	 cp .env.example .env
-	 ````
+    cp .env.example .env
+   ```
 2. Assign the model you want to use to the `OLLAMA_MODEL` environment variable (e.g. `llama3.2:3b`)
 3. Run the script:
-   
-	 ```
-	 bash ./scripts/run.sh
-	 ```
+
+   ```
+   bash ./scripts/run.sh
+   ```
 
 This pulls the model via Ollama (if not already present locally) and starts the full stack.
 
@@ -49,7 +49,6 @@ This pulls the model via Ollama (if not already present locally) and starts the 
 **Q: Why no Ollama container?**
 
 **A: Docker has no Silicon GPU accelleration: [source](https://chariotsolutions.com/blog/post/apple-silicon-gpus-docker-and-ollama-pick-two/)**
-
 
 **Q: Can this run on my old MacBook?**
 

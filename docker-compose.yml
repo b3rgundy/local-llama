@@ -1,7 +1,6 @@
 name: "Local LLM Stack"
 
 services:
-
   open-webui:
     image: ${OPEN_WEBUI_IMAGE}
     platform: linux/arm64
@@ -39,6 +38,3 @@ networks:
 
 volumes:
   open-webui:
-
-  
-  
